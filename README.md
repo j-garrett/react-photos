@@ -18,7 +18,7 @@ This app has different levels of difficulty, each represented by a different moc
 
 # Stage 0 MVP - Image Viewer
 
-* [ ] Display titles of images in a list.
+* [Complete] Display titles of images in a list.
 * [ ] When a title of an image is clicked, display image, title, rating in large image display
 
 # Stage 1 MVP - Update Rating 
