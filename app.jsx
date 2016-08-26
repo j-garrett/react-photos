@@ -4,7 +4,7 @@ class App extends React.Component {
     super(props);
     // Set initial state of app
     this.state = {
-      curPhoto: null,
+      curPhoto: undefined,
       photoList: props.photos
     };
     // Bind the click event listener function to this scope
@@ -15,9 +15,11 @@ class App extends React.Component {
     this.setState({curPhoto: photo});
   }
   render () {
+    var photoView = this.state.curPhoto ? <PhotoView photo={this.state.curPhoto} /> : null;
     return (
       <div>
-        <PhotoList photos={this.state.photoList} />
+        <PhotoList photos={this.state.photoList} clickList={this.photoClick} />
+        {photoView}
       </div>
     );
   }
@@ -26,21 +28,23 @@ var PhotoList = (props) => {
   return (
     <ul className="photo-list">
       {props.photos.map(photo => 
-        <PhotoEntry photo={photo} />
+        <PhotoEntry photo={photo} clickList={props.clickList} />
       )}
     </ul>
   );
-}
+};
 var PhotoEntry = (props) => {
   return (
-    <li>{props.photo.title}</li>
+    <li onClick={function() {
+      props.clickList(props.photo);
+    }}>{props.photo.title}</li>
   );
 };
 var PhotoView = (props) => {
   return (
     <div>
-      <img src={props.url} />
-      <p>{props.title}</p>
+      <img src={props.photo.url} />
+      <p>{props.photo.title}</p>
     </div>
   );
 };
