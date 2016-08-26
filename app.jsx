@@ -42,9 +42,10 @@ var PhotoEntry = (props) => {
 };
 var PhotoView = (props) => {
   return (
-    <div>
+    <div class="photo-view">
+      <h3>{props.photo.title}</h3>
+      <h4>{props.photo.rating} stars</h4>
       <img src={props.photo.url} />
-      <p>{props.photo.title}</p>
     </div>
   );
 };
