@@ -12,6 +12,7 @@ class App extends React.Component {
   }
   // Declare function to change state when list item is clicked
   photoClick (photo) {
+    console.log('clicked and tested compile')
     this.setState({curPhoto: photo});
   }
   render () {
