@@ -19,8 +19,8 @@ app.listen(1337, function() {
 
 app.get('/photos', function(req, res) {
   console.log('Received get request for /photos in server.js');
-  console.log(JSON.stringify(queries.getPhotos()));
-  res.send(queries.getPhotos);
+  console.log(JSON.stringify(queries.photos.getPhotos()));
+  res.send(queries.photos.getPhotos);
 });
 
 
