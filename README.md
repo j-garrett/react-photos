@@ -1,3 +1,5 @@
+TODO: Update ignores on compile file so you don't have tons of duplicates!
+
 ## Full Stack Photo Viewer
 
 ## How to use this

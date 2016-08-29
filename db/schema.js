@@ -19,7 +19,6 @@ var User = db.define('user', {
   // userId: Sequelize.UUID,
   user: Sequelize.STRING
 });
-
 var Photo = db.define('photo', {
   // Set up link to user's unique id
   // photoId: Sequelize.UUID,
@@ -30,7 +29,6 @@ var Photo = db.define('photo', {
   // Create a method that averages all ratings in rating table
   // rating: find rating in Rating where photoId = this.id
 });
-
 // Rating table will act similar to a join
 var Rating = db.define('rating', {
   //TODO: Make user and photo ids linked to actual photos and users
@@ -41,7 +39,13 @@ var Rating = db.define('rating', {
     validate: { min: 1, max: 5 }
   }
 });
+Photo.belongsTo(User);
+Photo.hasMany(Rating);
+User.hasMany(Rating);
 
+exports.User = User;
+exports.Photo = Photo;
+exports.Rating = Rating;
 // Create joins with belongsTo and foreign keys
 
 // Sync database to schema
@@ -72,5 +76,3 @@ var Rating = db.define('rating', {
 //     console.log('Error syncing database: ', err);
 //     db.close;
 //   });
-
-exports.Photo = Photo;

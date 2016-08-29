@@ -1,6 +1,31 @@
-var Sequelize = require('sequelize');
 var db = require('./schema');
-
+// Make sure to use include for loading associations (eager loading: http://docs.sequelizejs.com/en/v3/docs/models-usage/)
+// Create an object with keys for each model and build queries on each key
+// Now we can load this object in to other files for easy querying in the app!
+module.exports = {
+  users: {
+    get: function(req, res) {
+      db.User.findAll({include: [db.Photo]})
+        .then(function(users) {
+          console.log('Retrieve all the users with query.js: ', users);
+          res.json(users);
+        });
+    }
+  },
+  photos: {
+    get: function(req, res) {
+      db.Photo.findAll({include: [db.User]})
+        .then(function(photos) {
+          res.send(photos);
+        });
+    },
+    post: function(req, res) {}
+  },
+  ratings: {
+    get: function(req, res) {},
+    post: function(req, res) {}
+  }
+};
 
 // Get userId query
 var getUser = function(username) {
